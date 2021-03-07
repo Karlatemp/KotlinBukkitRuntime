@@ -1,0 +1,4 @@
+name: KotlinRuntime
+version: 1.0.0
+main: kotlin.bkr.Bk
+api-version: 1.13

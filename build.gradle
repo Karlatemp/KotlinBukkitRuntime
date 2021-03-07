@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.karlatemp'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/groups/public/' }
+}
+
+jar {
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.spigotmc/spigot-api
+    compileOnly group: 'org.spigotmc', name: 'spigot-api', version: '1.12.2-R0.1-SNAPSHOT'
+    compileOnly group: 'net.md-5', name: 'bungeecord-api', version: '1.12-SNAPSHOT'
+
+    def ktVersion = '1.4.31'
+    def coroutinesVersion = '1.4.3'
+    def serializationVersion = '1.1.0'
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib
+    //noinspection DifferentStdlibGradleVersion
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: ktVersion
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8', version: ktVersion
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: ktVersion
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-script-util', version: ktVersion
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-script-runtime', version: ktVersion
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-scripting-jvm', version: ktVersion
+
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-serialization-json-jvm
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-serialization-json-jvm', version: serializationVersion
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-serialization-protobuf-jvm', version: serializationVersion
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-serialization-properties-jvm', version: serializationVersion
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-serialization-cbor-jvm', version: serializationVersion
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-jdk8', version: coroutinesVersion
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: coroutinesVersion
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-io
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-io', version: '0.1.16'
+
+}
+
+
